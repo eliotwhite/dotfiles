@@ -30,7 +30,7 @@ One thing you'll need to do manually is add your `~/.zshrc` file. You can't syml
 
 ```zsh
 # Load Zsh
-source ~/.dotfiles/.zshrc
+source ~/.dotfiles/zshrc
 ```
 
 When installing these dotfiles for the first time you'll need to backup all of your settings with Mackup. Install and backup your settings with the command below. Your settings will be synced to your Dropbox so you can use them to sync between computers and reinstall them when reinstalling your Mac. If you want to save your settings to a different folder or different medium than Dropbox, [checkout the documentation](https://github.com/lra/mackup#supported-storages).
