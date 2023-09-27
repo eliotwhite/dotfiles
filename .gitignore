@@ -1,0 +1,3 @@
+# Ignore the powerlevel10k repository as we will pull that down through the 
+# installation script.
+omz-custom/themes/powerlevel10k
