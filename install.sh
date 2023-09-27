@@ -40,9 +40,9 @@ else
             sudo apt-get install zsh
             install_zsh
         fi
-    # If the platform is OS X, tell the user to install zsh :)
+    # If the platform is MacOS, tell the user to install zsh :) (but it should already be installed)
     elif [[ $platform == 'Darwin' ]]; then
-        echo "Please install zsh, then re-run this script!"
+        echo "Please install zsh, then re-run this script."
         exit
     fi
 fi
@@ -61,9 +61,17 @@ fi
 # Update Homebrew recipes
 brew update
 
-# Install all our dependencies with bundle (See Brewfile)
-brew tap homebrew/bundle
-brew bundle
+# Install different software depending on the platform defined earlier ($platform)
+# If the platform is Linux, try an apt-get to install zsh and then recurse
+    if [[ $platform == 'Linux' ]]; then
+        if [[ -f /etc/redhat-release ]]; then
+            brew install git gh tree wget yt-dlp
+        fi
+    # If the platform is MacOS, install all our dependencies with bundle (See Brewfile)
+    elif [[ $platform == 'Darwin' ]]; then
+        brew tap homebrew/bundle
+        brew bundle
+    fi
 
 # create dotfiles_old in homedir
 echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."

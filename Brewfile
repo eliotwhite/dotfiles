@@ -29,7 +29,7 @@ brew 'mas'
 
 # Install Binaries
 brew 'git'
-brew 'hub'
+brew 'gh'
 brew 'tree'
 brew 'mackup'
 brew 'trash'
