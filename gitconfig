@@ -1,0 +1,9 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Eliot White
+	email = accounts@eliotwhite.com
+	signingkey = ssh-ed25519
+[credential]
+	username = eliotwhite
+[core]
+	excludesFile = /Users/eliot/.gitignore_global
