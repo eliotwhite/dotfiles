@@ -9,7 +9,7 @@ echo "Setting up your computer..."
 
 dir=~/.dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="gitconfig gitignore_global mackup.cfg zprofile zshrc"    # list of files/folders to symlink in homedir
+files="gitconfig gitignore_global mackup.cfg zshrc"    # list of files/folders to symlink in homedir
 
 ##########
 
@@ -19,8 +19,9 @@ files="gitconfig gitignore_global mackup.cfg zprofile zshrc"    # list of files/
 install_zsh () {
 # Test to see if zshell is installed.  If it is:
 if [ -f /bin/zsh -o -f /usr/bin/zsh ]; then
-    # Clone my oh-my-zsh repository from GitHub only if it isn't already present
+    # Install oh-my-zsh only if it isn't already present
     if [[ ! -d ~/.oh-my-zsh/ ]]; then
+        echo "Installing Oh My Zsh. After this runs, you will need to run the install script again."
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     fi
     # Set the default shell to zsh if it isn't currently set to zsh
@@ -53,43 +54,80 @@ install_zsh
 # Now we clone the powerlevel10k repository so we can use that as a theme
 git clone https://github.com/romkatv/powerlevel10k.git $dir/omz-custom/themes/powerlevel10k
 
-# Check for Homebrew and install if we don't have it
-if test ! $(which brew); then
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
 
-# Update Homebrew recipes
-brew update
+####### Installing Homebrew
 
-# Install different software depending on the platform defined earlier ($platform)
-# If the platform is Linux, try an apt-get to install zsh and then recurse
+# Before we install Homebrew, we need to know the architecture of the system we're 
+# attempting to install it on. At the time of writing, Homebrew isn't supported on ARM 
+# Linux systems.
+architecture=$(arch);
+# If we're on Linux and ARM architecture, skip installing homebrew.
+if [[ $platform == 'Linux' && $architecture == 'aarch64' ]]; then
+    echo "Homebrew is not currently supported on ARM Linux."
+else
+    # Check for Homebrew and install if we don't have it
+    if test ! $(which brew); then
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
+    # If the platform is Linux, add homebrew's path to your zsh profile.
     if [[ $platform == 'Linux' ]]; then
-        if [[ -f /etc/redhat-release ]]; then
-            brew install git gh tree wget yt-dlp
+        (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> $HOME/.zprofile
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    # If the platform is MacOS, add homebrew's path to your zsh profile. However, the 
+    # profile is different depending on whether you're on Apple Silicon or Intel.
+    elif [[ $platform == 'Darwin' ]]; then
+        if [[ $architecture == 'arm64' ]]; then
+            (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> $HOME/.zprofile
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+        elif [[ $architecture == 'i386' ]]; then
+            (echo; echo 'eval "$(/usr/local/bin/brew shellenv)"') >> $HOME/.zprofile
+            eval "$(/usr/local/bin/brew shellenv)"
         fi
-    # If the platform is MacOS, install all our dependencies with bundle (See Brewfile)
+    else
+        echo "This platform is unknown. You may need to take other steps to make Homebrew available from zsh."
+    fi
+    
+    # Update Homebrew recipes.
+    brew update
+    
+    # Install different homebrew software depending on the platform defined earlier. 
+    # If the platform is Linux, install these specific brews.
+    if [[ $platform == 'Linux' ]]; then
+        sudo apt-get install build-essential
+        brew install gcc git gh tree wget yt-dlp
+    # If the platform is MacOS, install all our dependencies with bundle (See Brewfile).
     elif [[ $platform == 'Darwin' ]]; then
         brew tap homebrew/bundle
         brew bundle
     fi
+fi
 
-# create dotfiles_old in homedir
+# Create dotfiles_old in homedir.
 echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
 mkdir -p $olddir
 echo "done"
 
-# change to the dotfiles directory
+# Change to the dotfiles directory.
 echo -n "Changing to the $dir directory ..."
 cd $dir
 echo "done"
 
-# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
+# Move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
 # from the homedir to any files in the ~/.dotfiles directory specified in $files
+echo "Moving any existing dotfiles from ~ to $olddir"
 for file in $files; do
-    echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/.$file ~/dotfiles_old/
-    echo "Creating symlink to $file in home directory."
-    ln -s $dir/$file ~/.$file
+    # Check whether the dotfile exists.
+	if [ -e ~/.$file ]
+    then
+        # If the dotfile exists, move it to the dotfiles_old directory, then make a symlink
+        # to it from the corresponding file in the dotfiles directory.
+        mv ~/.$file ~/dotfiles_old/
+        echo "Creating symlink to $file in home directory."
+        ln -s $dir/$file ~/.$file
+    else
+        # If the dotfile doesn't exist, skip it and move to the next one.
+        echo "$file does not exist. Skipping to next dotfile."
+    fi
 done
 
 # Create a Sites directory
