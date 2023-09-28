@@ -11,7 +11,7 @@ dir=~/.dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
 files="gitconfig gitignore_global mackup.cfg zshrc"    # list of files/folders to symlink in homedir
 
-##########
+########## Installing Oh My Zsh and zsh itself
 
 # Install zsh and oh my zsh. Doing this first so config files aren't later overwritten
 # by this function.
@@ -56,7 +56,7 @@ install_zsh
 git clone https://github.com/romkatv/powerlevel10k.git $dir/omz-custom/themes/powerlevel10k
 
 
-####### Installing Homebrew
+########## Installing Homebrew
 
 # Before we install Homebrew, we need to know the architecture of the system we're 
 # attempting to install it on. At the time of writing, Homebrew isn't supported on ARM 
@@ -104,6 +104,8 @@ else
     fi
 fi
 
+########## Deal with dotfiles and other setup preferences
+
 # Create dotfiles_old in homedir.
 echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
 mkdir -p $olddir
@@ -119,8 +121,7 @@ echo "done"
 echo "Moving any existing dotfiles from ~ to $olddir"
 for file in $files; do
     # Check whether the dotfile exists.
-	if [ -e ~/.$file ]
-    then
+	if [ -e ~/.$file ]; then
         # If the dotfile exists, move it to the dotfiles_old directory.
         echo "Backing up .$file."
         mv ~/.$file ~/dotfiles_old/
