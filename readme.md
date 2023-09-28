@@ -16,12 +16,12 @@ Follow these install instructions to setup a new Mac.
 6. Run `./~/.dotfiles/install.sh` to start the installation
 7. Install the [recommended powerlevel10k fonts](https://github.com/romkatv/powerlevel10k/blob/master/font.md)
 8. Restart Terminal
-9. Change Terminal profile (Nord) to use p10k fonts
+9. Change Terminal profile (Nord) to use p10k fonts (MesloLGS NF Regular 11)
 10. Go through the powerlevel10k configuration wizard (run `p10k configure` if it doesn't start on its own)
 11. Restore preferences by running `mackup restore`
 12. Restart the computer to finalize the process
 
-The Mac is now ready to use!
+The Mac is now ready to go!
 
 ## A Fresh Linux Setup
 
@@ -30,7 +30,7 @@ Given I'm a Mac user, the only instances in which I'm setting up fresh Linux ins
 1. Update packages: `sudo apt-get update && sudo apt-get upgrade`
 2. Run `mkdir ~/.dotfiles`
 3. Run `git clone https://github.com/eliotwhite/dotfiles.git ~/.dotfiles`
-4. Run `~/.dotfiles/install.sh` to start the installation
+4. Run `./~/.dotfiles/install.sh` to start the installation
 5. Restart the terminal session, most likely with `exit`
 6. Go through the powerlevel10k configuration wizard (run `p10k configure` if it doesn't start on its own)
 
@@ -38,7 +38,7 @@ The Linux setup is complete!
 
 ## Your Own Dotfiles
 
-I built this repo based on the work of others, and adapted it as needed. You can do the same! Just clone this repo and tweak away.
+I built this repo based on the work of others and adapted it as needed. You can do the same! Just clone this repo and tweak away.
 
 The [`Brewfile`](./Brewfile) applies to Mac installations only, and the selection of desired applications is particular to each person. They have a [search function](https://brew.sh/) on their home page you can use to see whether your desired tools and applications are available.
 
@@ -46,4 +46,4 @@ The [`Brewfile`](./Brewfile) applies to Mac installations only, and the selectio
 
 ## License
 
-The MIT License. Please see [the license file](license.md) for more information.
+The MIT License. Please see [the license file](./license) for more information.
