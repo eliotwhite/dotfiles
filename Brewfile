@@ -1,9 +1,8 @@
 # Taps
-tap 'caskroom/cask'
-tap 'caskroom/fonts'
-tap 'caskroom/versions'
+tap 'homebrew/cask'
+tap 'homebrew/cask-fonts'
+tap 'homebrew/cask-versions'
 tap 'homebrew/bundle'
-tap 'homebrew/dupes'
 
 # Make sure apps get installed in system Applications dir
 cask_args appdir: '/Applications'
@@ -20,9 +19,6 @@ brew 'findutils'
 
 # Install Bash 4
 brew 'bash'
-
-# Install more recent versions of some OS X tools
-brew 'homebrew/dupes/grep'
 
 # Install mas, Mac App Store CLI, enabling us to brew App Store apps
 brew 'mas'
@@ -75,10 +71,8 @@ cask 'quicklook-csv'
 cask 'qlstephen'
 
 # Fonts
-cask 'font-sauce-code-powerline'
 cask 'font-source-code-pro'
-cask 'font-source-sans-pro'
-cask 'font-source-serif-pro'
 cask 'font-hack-nerd-font'
 cask 'font-inconsolata-for-powerline'
 cask 'font-menlo-for-powerline'
+cask 'font-meslo-for-powerline'

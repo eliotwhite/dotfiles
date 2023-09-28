@@ -61,6 +61,7 @@ git clone https://github.com/romkatv/powerlevel10k.git $dir/omz-custom/themes/po
 # attempting to install it on. At the time of writing, Homebrew isn't supported on ARM 
 # Linux systems.
 architecture=$(arch);
+platform=$(uname);
 # If we're on Linux and ARM architecture, skip installing homebrew.
 if [[ $platform == 'Linux' && $architecture == 'aarch64' ]]; then
     echo "Homebrew is not currently supported on ARM Linux."
@@ -84,7 +85,7 @@ else
             eval "$(/usr/local/bin/brew shellenv)"
         fi
     else
-        echo "This platform is unknown. You may need to take other steps to make Homebrew available from zsh."
+        echo "This platform ($platform on $architecture) is unknown to homebrew. You may need to take other steps to make Homebrew available from zsh."
     fi
     
     # Update Homebrew recipes.
@@ -119,15 +120,16 @@ for file in $files; do
     # Check whether the dotfile exists.
 	if [ -e ~/.$file ]
     then
-        # If the dotfile exists, move it to the dotfiles_old directory, then make a symlink
-        # to it from the corresponding file in the dotfiles directory.
+        # If the dotfile exists, move it to the dotfiles_old directory.
+        echo "Backing up .$file."
         mv ~/.$file ~/dotfiles_old/
-        echo "Creating symlink to $file in home directory."
-        ln -s $dir/$file ~/.$file
     else
-        # If the dotfile doesn't exist, skip it and move to the next one.
-        echo "$file does not exist. Skipping to next dotfile."
+        # If the dotfile doesn't exist, skip the backup and move to the next one.
+        echo ".$file does not exist. Skipping backup."
     fi
+    # Make a symlink to the dotfile from the corresponding file in the dotfiles directory.
+    echo "Creating symlink to .$file in home directory."
+    ln -s $dir/$file ~/.$file
 done
 
 # Create a Sites directory
