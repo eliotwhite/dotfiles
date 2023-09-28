@@ -2,43 +2,48 @@
 
 ## What Is This?
 
-This repository…
+This repository contains configuration files and an install script to set up MacOS and Linux computers (or virtual machines) exactly the way I like them. At the end of the installation, depending on the machine's platform and architecture, I have a computer running zsh + oh my zsh + powerlevel10k with homebrew, my standard apps/brews, and the dotfiles set up just the way I like them. Additional configuration is needed for powerlevel10k after installation is complete.
 
 ## A Fresh MacOS Setup
 
 Follow these install instructions to setup a new Mac.
 
 1. Update MacOS to the latest version
-2. Install MacOS Command Line Tools
-3. Install 1Password and set up its SSH Agent functionality
-4. Clone this repo to `~/.dotfiles`
-5. Run `install.sh` to start the installation
-6. Restore preferences by running `mackup restore`
-7. Restart the computer to finalize the process
+2. Install MacOS Command Line Tools: `xcode-select --install`
+3. Download and import the [Nord Terminal profile](https://github.com/nordtheme/terminal-app) and make it the default
+4. Run `mkdir ~/.dotfiles`
+5. Run `git clone https://github.com/eliotwhite/dotfiles.git ~/.dotfiles`
+6. Run `./~/.dotfiles/install.sh` to start the installation
+7. Install the [recommended powerlevel10k fonts](https://github.com/romkatv/powerlevel10k/blob/master/font.md)
+8. Restart Terminal
+9. Change Terminal profile (Nord) to use p10k fonts
+10. Go through the powerlevel10k configuration wizard (run `p10k configure` if it doesn't start on its own)
+11. Restore preferences by running `mackup restore`
+12. Restart the computer to finalize the process
 
-Your Mac is now ready to use!
+The Mac is now ready to use!
+
+## A Fresh Linux Setup
+
+Given I'm a Mac user, the only instances in which I'm setting up fresh Linux installations is with virtual machines or machines I'm ssh'ing to from a Mac. Thus, this process is a little less involved than setting up a Mac.
+
+1. Update packages: `sudo apt-get update && sudo apt-get upgrade`
+2. Run `mkdir ~/.dotfiles`
+3. Run `git clone https://github.com/eliotwhite/dotfiles.git ~/.dotfiles`
+4. Run `~/.dotfiles/install.sh` to start the installation
+5. Restart the terminal session, most likely with `exit`
+6. Go through the powerlevel10k configuration wizard (run `p10k configure` if it doesn't start on its own)
+
+The Linux setup is complete!
 
 ## Your Own Dotfiles
 
-If you want to start your own dotfiles from this setup, it's pretty easy to do so. First of all you'll need to clone this repo. After that you can tweak it the way you want.
+I built this repo based on the work of others, and adapted it as needed. You can do the same! Just clone this repo and tweak away.
 
-Check out the [`Brewfile`](./Brewfile) and adjust the apps you want to install for your machine. Use [their search page](https://caskroom.github.io/search) to check if the app you want to install is available.
+The [`Brewfile`](./Brewfile) applies to Mac installations only, and the selection of desired applications is particular to each person. They have a [search function](https://brew.sh/) on their home page you can use to see whether your desired tools and applications are available.
 
-Check out the [`aliases.zsh`](./aliases.zsh) file and add your own aliases. If you need to tweak your `$PATH` check out the [`path.zsh`](./path.zsh) file.
+[Aliases](./omz-custom/aliases.zsh), your [`$PATH`](./omz-custom/paths.zsh), [functions](./omz-custom/functions.zsh), and [environment variables](./omz-custom/env.zsh) are all configurable based on your needs.
 
-One thing you'll need to do manually is add your `~/.zshrc` file. You can't symlink the `.zshrc` file from your dotfiles because Mackup will already symlink your `.zshrc` from your home directory. That's why we'll need to create the file manually. Add the contents below to a `.zshrc` file in your user directory. What it will do is load the `.zshrc` file from your dotfiles. Make sure that the path to your dotfiles is correct.
-
-```zsh
-# Load Zsh
-source ~/.dotfiles/zshrc
-```
-
-When installing these dotfiles for the first time you'll need to backup all of your settings with Mackup. Install and backup your settings with the command below. Your settings will be synced to your Dropbox so you can use them to sync between computers and reinstall them when reinstalling your Mac. If you want to save your settings to a different folder or different medium than Dropbox, [checkout the documentation](https://github.com/lra/mackup#supported-storages).
-
-```zsh
-brew install mackup
-mackup backup
-```
 ## License
 
 The MIT License. Please see [the license file](license.md) for more information.
