@@ -21,7 +21,7 @@ install_zsh () {
 if [ -f /bin/zsh -o -f /usr/bin/zsh ]; then
     # Install oh-my-zsh only if it isn't already present
     if [[ ! -d ~/.oh-my-zsh/ ]]; then
-        echo "Installing Oh My Zsh. After this runs, you will need to run the install script again."
+        echo "\033[0;31m*** Installing Oh My Zsh. After this runs, type 'exit' at the prompt to continue installation. ***"
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     fi
     # Set the default shell to zsh if it isn't currently set to zsh
@@ -38,6 +38,7 @@ else
             install_zsh
         fi
         if [[ -f /etc/debian_version ]]; then
+            sudo apt-get update
             sudo apt-get install zsh
             install_zsh
         fi
