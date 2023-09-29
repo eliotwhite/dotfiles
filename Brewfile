@@ -35,7 +35,8 @@ brew 'yt-dlp'
 # Apps
 cask '1password'
 cask 'aerial'
-cask 'choosy'
+# TODO Choosy requires sudo. Disabling until I figure out why.
+# cask 'choosy'
 cask 'discord'
 cask 'hazel'
 cask 'keyboard-maestro'
@@ -48,7 +49,8 @@ cask 'obsidian'
 cask 'suspicious-package'
 cask 'tor-browser'
 cask 'vlc'
-cask 'vmware-fusion'
+# TODO VMWare Fusion requires Terminal to have additional permissions, and thus installation fails. Disabling until I understand how to address this ahead of time.
+# cask 'vmware-fusion'
 
 # Mac App Store Apps
 # You need to know the ID of the app; to get it, run the following command:
@@ -64,11 +66,12 @@ mas "Drafts", id: 1435957248
 mas "Pixelmator Pro", id: 1289583905
 
 # Quicklook
-cask 'qlcolorcode'
-cask 'qlmarkdown'
-cask 'quicklook-json'
-cask 'quicklook-csv'
-cask 'qlstephen'
+# These don't work with modern MacOS. Need to figure out alternatives.
+# cask 'qlcolorcode'
+# cask 'qlmarkdown'
+# cask 'quicklook-json'
+# cask 'quicklook-csv'
+# cask 'qlstephen'
 
 # Fonts
 cask 'font-source-code-pro'

@@ -138,6 +138,10 @@ done
 # This is an default directory for OS X user accounts but doesn't comes pre-installed
 mkdir $HOME/Sites
 
-# Set OS X preferences
+# TODO
+# Ability to restore mackup backup.
+
+# TODO
+# Set OS X preferences. Figure out what defaults can be set on Ventura and Sonoma.
 # We will run this last because this will reload the shell
 # source .osx
