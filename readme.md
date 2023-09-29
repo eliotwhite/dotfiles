@@ -46,4 +46,4 @@ The [`Brewfile`](./Brewfile) applies to Mac installations only, and the selectio
 
 ## License
 
-The MIT License. Please see [the license file](./license) for more information.
+The MIT License. Please see [the license file](./LICENSE) for more information.
