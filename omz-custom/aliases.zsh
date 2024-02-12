@@ -7,6 +7,8 @@ alias sshre="ssh eliot@reef.ocean"
 alias sshba="ssh eliot@baleen.ocean"
 alias sshpr="ssh root@proxmox.ocean"
 alias sshle="ssh eliot@leviathan.ocean"
+alias sshpo="ssh eliot@potato.ocean"
+alias sshsa="ssh eliot@saury.ocean"
 
 # Directories
 alias dotfiles="cd $DOTFILES"
