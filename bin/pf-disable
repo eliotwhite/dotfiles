@@ -1,0 +1,8 @@
+#!/bin/sh
+echo "
+nat-anchor \"com.apple/*\" all
+nat-anchor \"com.apple.internet-sharing\" all
+rdr-anchor \"com.apple/*\" all
+rdr-anchor \"com.apple.internet-sharing\" all
+" | sudo pfctl -ef -
+sudo pfctl -s nat

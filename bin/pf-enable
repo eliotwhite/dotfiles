@@ -1,0 +1,11 @@
+#!/bin/sh
+echo "
+nat-anchor \"com.apple/*\" all
+nat-anchor \"com.apple.internet-sharing\" all
+rdr-anchor \"com.apple/*\" all
+rdr-anchor \"com.apple.internet-sharing\" all
+rdr pass inet proto tcp from any to any port 9001 -> 192.168.64.16 port 9001
+no rdr inet proto tcp from 127.0.0.1 port 8080
+rdr pass inet proto tcp from any to any port 8080 -> 192.168.64.16 port 8080
+" | sudo pfctl -ef -
+sudo pfctl -s nat
