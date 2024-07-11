@@ -1,15 +1,12 @@
 
 #SSH aliases to common machines on home network
-alias sshur="ssh eliot@urchin.ocean"
-alias sshrp="ssh eliot@rpi-01.ocean"
-alias sshmi="ssh eliot@moorish-idol.ocean"
-alias sshre="ssh eliot@reef.ocean"
-alias sshba="ssh eliot@baleen.ocean"
+alias sshre="ssh eliot@reef.family"
 alias sshpr="ssh root@proxmox.ocean"
 alias sshle="ssh eliot@leviathan.ocean"
-alias sshpo="ssh eliot@potato.ocean"
 alias sshsa="ssh eliot@saury.ocean"
-alias sshha="ssh hassio@home.ocean"
+alias sshme="ssh eliot@menhaden.ocean"
+alias sshpo="ssh eliot@pogie.ocean"
+alias sshan="ssh eliot@anchovy.ocean"
 
 # Directories
 alias dotfiles="cd $DOTFILES"
