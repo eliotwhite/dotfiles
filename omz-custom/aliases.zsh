@@ -7,6 +7,7 @@ alias sshsa="ssh eliot@saury.ocean"
 alias sshme="ssh eliot@menhaden.ocean"
 alias sshpo="ssh eliot@pogie.ocean"
 alias sshan="ssh eliot@anchovy.ocean"
+alias sshka="ssh eliot@10.71.97.211"
 
 # Directories
 alias dotfiles="cd $DOTFILES"
