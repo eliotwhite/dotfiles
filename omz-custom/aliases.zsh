@@ -1,11 +1,11 @@
 
-#SSH aliases to common machines on home network
+# SSH aliases to common machines on home network
 alias sshre="ssh eliot@reef.family"
 alias sshpr="ssh root@proxmox.ocean"
 alias sshle="ssh eliot@leviathan.ocean"
 alias sshsa="ssh eliot@saury.ocean"
 alias sshme="ssh eliot@menhaden.ocean"
-alias sshpo="ssh eliot@pogie.ocean"
+# alias sshpo="ssh eliot@pogie.ocean"
 alias sshan="ssh eliot@anchovy.ocean"
 alias sshka="ssh eliot@10.71.97.211"
 
