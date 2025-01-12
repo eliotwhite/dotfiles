@@ -9,6 +9,7 @@ alias sshme="ssh eliot@menhaden.ocean"
 alias sshan="ssh eliot@anchovy.ocean"
 alias sshka="ssh eliot@10.71.97.211"
 alias sshmi="ssh eliot@10.71.97.230"
+alias sshga="ssh root@10.71.97.115"
 
 # Directories
 alias dotfiles="cd $DOTFILES"
