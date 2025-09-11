@@ -14,6 +14,13 @@ alias sshba="ssh eliot@10.71.97.106"  # Baleen VM running on leviathan
 alias sshka="ssh eliot@10.71.97.128"  # Kali Linux
 alias sshmi="ssh eliot@10.71.97.201"  # Linux Mint
 alias sshga="ssh eliot@10.71.97.150"  # Gen AI server
+alias sshka="ssh eliot@10.71.97.202"
+alias sshmi="ssh eliot@10.71.97.201"
+alias sshga="ssh eliot@10.71.97.150"
+alias sshfr="ssh eliot@10.71.97.22"
+
+# Wake-on-LAN machines
+alias wolsf="wakeonlan d8:43:ae:b7:f4:c8"  # Wake Sailfish
 
 # Directories
 alias dotfiles="cd $DOTFILES"
