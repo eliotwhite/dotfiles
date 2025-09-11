@@ -6,12 +6,14 @@ alias sshsa="ssh eliot@saury.ocean"
 alias sshme="ssh eliot@menhaden.ocean"
 alias sshan="ssh eliot@anchovy.ocean"
 alias sshma="ssh root@10.71.97.8"  # Proxmox VE: mandarinfish
+alias sshpb="ssh root@10.71.97.9"  # Proxmox Backup Server
 alias sshbl="ssh root@10.71.97.20"  # Proxmox VE: blue-marlin
 alias sshgo="ssh root@10.71.97.21"  # Proxmox VE: goby
 alias sshcn="ssh eliot@10.71.97.10"
-alias sshka="ssh eliot@10.71.97.202"
-alias sshmi="ssh eliot@10.71.97.201"
-alias sshga="ssh eliot@10.71.97.150"
+alias sshba="ssh eliot@10.71.97.106"  # Baleen VM running on leviathan
+alias sshka="ssh eliot@10.71.97.128"  # Kali Linux
+alias sshmi="ssh eliot@10.71.97.201"  # Linux Mint
+alias sshga="ssh eliot@10.71.97.150"  # Gen AI server
 
 # Directories
 alias dotfiles="cd $DOTFILES"
